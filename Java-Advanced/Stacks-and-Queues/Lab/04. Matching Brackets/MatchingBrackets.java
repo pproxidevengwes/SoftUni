@@ -5,19 +5,17 @@ import java.util.*;
 public class MatchingBrackets {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int decimal = Integer.valueOf(scanner.nextLine());
 
         ArrayDeque<Integer> stack = new ArrayDeque<>();
 
-        if (decimal == 0) {
-            System.out.println(0);
-        }
-        while (decimal != 0) {
-            stack.push(decimal % 2);
-            decimal /= 2;
-        }
-        while (!stack.isEmpty()) {
-            System.out.print(stack.pop());
+        String input = scanner.nextLine();
+
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == '(') {
+                stack.push(i);
+            } else if (input.charAt(i) == ')') {
+                System.out.println(input.substring(stack.pop(), i + 1));
+            }
         }
     }
 }
