@@ -1,9 +1,7 @@
 package com.company;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class CountUppercaseWords {
     public static void main(String[] args) {
