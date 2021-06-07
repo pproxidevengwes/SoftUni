@@ -8,7 +8,7 @@ public class ConsumerPrint {
         Scanner scanner = new Scanner(System.in);
         String[] input = scanner.nextLine().split("\\s+");
 
-        Consumer<String[]>printString=arr->{
+        Consumer<String[]> printString = arr -> {
             for (String name : arr) {
                 System.out.println(name);
             }
