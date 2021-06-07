@@ -12,7 +12,7 @@ public class FilterByAge {
         Map<String, Integer> people = new LinkedHashMap<>();
 
         while (n-- > 0) {
-            String[] tokens = scanner.nextLine().split("\\s+");
+            String[] tokens = scanner.nextLine().split(", ");
             String name = tokens[0];
             int age = Integer.parseInt(tokens[1]);
             people.put(name, age);
