@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        
         Jar<Integer> integerJar = new Jar<>();
         
         integerJar.add(13);
