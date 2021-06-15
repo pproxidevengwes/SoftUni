@@ -5,7 +5,7 @@ public class Stack {
         private int element;
         private Node prev;
 
-        public Node(int element) {
+        private Node(int element) {
             this.element = element;
         }
     }
@@ -26,7 +26,7 @@ public class Stack {
         this.size++;
     }
 
-    public int pop() throws IllegalAccessException {
+    public int pop() {
         ensureNonEmpty();
         int res = this.top.element;
         this.top = this.top.prev;
@@ -34,19 +34,19 @@ public class Stack {
         return res;
     }
 
-    private void ensureNonEmpty() throws IllegalAccessException {
-        if (this.top != null) {
-            throw new IllegalAccessException("Empty Stack");
+    private void ensureNonEmpty() {
+        if (this.top == null) {
+            throw new IllegalStateException("Empty Stack");
         }
     }
 
-    public int peek() throws IllegalAccessException {
+    public int peek() {
         ensureNonEmpty();
         return this.top.element;
     }
 
-    public Stack(int size) {
-        this.size = size;
+    public int size() {
+        return this.size;
     }
 
     public boolean isEmpty() {
