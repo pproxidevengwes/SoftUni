@@ -1,0 +1,16 @@
+Problem 8.	Custom List Sorter
+Extend the previous problem by creating an additional Sorter class. It should have a single static method sort() which can sort objects of type CustomList containing any type that can be compared. Extend the command list to support one additional command Sort:
+•	Sort - Sort the elements in the list in ascending order.
+
+Examples
+Input	
+Add cc
+Add bb
+Add aa
+Sort
+Print
+END
+Output
+aa
+bb
+cc
