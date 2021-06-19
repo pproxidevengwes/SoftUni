@@ -4,7 +4,8 @@ Everyone remembers the old snake games. Now is time to create our own snake game
 
 You will be given an integer n for the size of the territory with square shape. On the next n lines, you will receive 
 the rows of the territory. The snake will be placed on a random position, marked with the letter 'S'. There will also be food
-on random positions, marked with '*'. The territory may have lair. The lair will have two burrows marked with the letter - 'B'. All of the empty positions will be marked with '-'.
+on random positions, marked with '*'. The territory may have lair. The lair will have two burrows marked with the letter -
+'B'. All of the empty positions will be marked with '-'.
 Each turn, you will be given command for the snake’s movement. When the snake moves it leaves a trail marked with '.'
 Move commands will be: "up", "down", "left", "right".
 If the snake moves to a food, it will eat the food, which will increase food quantity with one.
