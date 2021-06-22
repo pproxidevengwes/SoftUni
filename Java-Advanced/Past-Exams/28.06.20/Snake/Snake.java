@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main {
+public class Snake {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int foodQuantity = 0;
