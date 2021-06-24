@@ -1,0 +1,38 @@
+Car Dealership
+ 
+Preparation
+Download the skeleton provided in Judge. Do not change the packages!
+Pay attention to name the package dealership, all the classes, their fields and methods the same way they are presented in the following document.
+It is also important to keep the project structure as described.
+Problem description
+Your task is to create a repository, which stores items by creating the classes described below.
+Car
+First, write a Java class Car with the following public fields:
+•	manufacturer: String
+•	model: String
+•	year: int
+The class constructor should receive manufacturer, model and year. You need to create the appropriate getters and setters. Override the toString() 
+method in the following format:
+"{manufacturer} {model} ({year})"
+Dealership
+Next, write a Java class Dealership that has data (Collection, which stores the entity Car). All entities inside the repository have the same fields.
+Also, the Dealership class should have those public fields:
+•	name: String
+•	capacity: int
+The class constructor should receive name and capacity, also it should initialize the data with a new instance of the collection.
+Implement the following features:
+•	Field data – Collection that holds added cars
+•	Method add(Car car) – adds an entity to the data if there is an empty cell for the car.
+•	Method buy(String manufacturer, String model) – removes the car by given manufacturer and model, if such exists, and returns boolean.
+•	Method getLatestCar() – returns the latest car (by year) or null if have no cars.
+•	Method getCar(String manufacturer, String model) – returns the car with the given manufacturer and model or null if there is no such car.
+•	Getter getCount() – returns the number of cars.
+•	getStatistics() – returns a String in the following format:
+o	" The cars are in a car dealership {name}:
+{Car1}
+{Car2}
+(…)"
+Constraints
+•	The combinations of manufacturers and models will be always unique.
+•	The year of the cars will always be positive.
+•	There won't be cars with the same years.
