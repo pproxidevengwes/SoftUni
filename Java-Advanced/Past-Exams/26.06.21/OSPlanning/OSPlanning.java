@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Planning {
+public class OSPlanning {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         //stack
