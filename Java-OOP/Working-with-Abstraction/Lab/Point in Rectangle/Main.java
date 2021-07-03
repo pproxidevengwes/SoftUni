@@ -9,13 +9,14 @@ public class Main {
 
         Rectangle rect = new Rectangle(A, B);
 
-        int n = Reader.readArray("\\s+")[0];
+        int n = Reader.readIntArray("\\s+")[0];
         while (n-- > 0) {
             int[] singlePoint = Reader.readIntArray("\\s+");
             Point p = new Point(singlePoint[0], singlePoint[1]);
 
             boolean isWithin = rect.contains(p);
-            printLine(isWithin);
+            System.out.println(isWithin);
+
         }
 
     }
