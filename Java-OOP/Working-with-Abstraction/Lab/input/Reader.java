@@ -14,7 +14,7 @@ public class Reader {
     }
 
     public static String[] readStringArray(String delmiter) {
-        return scanner.nextLine().split("\\s+");
+        return scanner.nextLine().split(delmiter);
     }
 
 }
