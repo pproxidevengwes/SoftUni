@@ -1,5 +1,3 @@
-package ex3;
-
 public class Citizen implements Person, Identifiable, Birthable {
     private String name;
     private int age;
