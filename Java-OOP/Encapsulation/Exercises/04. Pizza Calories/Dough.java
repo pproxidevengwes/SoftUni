@@ -11,7 +11,6 @@ public class Dough {
         WHITE(1.5),
         WHOLEGRAIN(1.0);
 
-
         private double modifier;
 
         DoughTypes(double modifier) {
@@ -46,7 +45,6 @@ public class Dough {
         setWeight(weight);
     }
 
-
     private void setFlourType(String flourType) {
         checkDoughData(flourType);
         this.flourType = flourType;
@@ -79,7 +77,6 @@ public class Dough {
         } catch (Exception e) {
             doughError();
         }
-
     }
 
     public double calculateCalories() {
@@ -91,5 +88,4 @@ public class Dough {
     private void doughError(){
         throw new IllegalArgumentException("Invalid type of dough.");
     }
-
 }
