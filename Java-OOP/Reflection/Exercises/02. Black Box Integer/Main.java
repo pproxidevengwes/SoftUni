@@ -28,9 +28,8 @@ public class Main {
                 break;
             }
         }
-
         String line = scanner.nextLine();
-
+        
         Method[] methods = BlackBoxInt.class.getDeclaredMethods();
         Field innerValue = null;
         try {
