@@ -67,6 +67,7 @@ Gunner -> 3
 Horseman -> 2
 Pikeman -> 2
 
+
 BarracksWars – the Commands Strike Back
 
 As you might have noticed commands in the project from Problem 3 are implemented via a switch case with method calls in the Engine class. Although this approach
@@ -124,6 +125,7 @@ Horseman -> 2
 Pikeman -> 2
 No such units in repository.
 No such units in repository.
+
 
 * BarracksWars – Return of the Dependencies
 
