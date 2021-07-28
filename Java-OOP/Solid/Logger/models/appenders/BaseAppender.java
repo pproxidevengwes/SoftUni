@@ -7,10 +7,12 @@ import interfaces.Layout;
 public abstract class BaseAppender implements Appender {
     private Layout layout;
     private ReportLevel reportLevel;
+    private int messageAppendedCount;
 
-    public BaseAppender(Layout layout) {
+    public BaseAppender (Layout layout) {
         this.layout = layout;
         this.reportLevel = ReportLevel.INFO;
+        this.messageAppendedCount = 0;
     }
 
     @Override
@@ -18,6 +20,7 @@ public abstract class BaseAppender implements Appender {
         if (reportLevel.ordinal() >= this.reportLevel.ordinal()) {
             String result = String.format(this.layout.getLayout(), dateTime, reportLevel.toString(), message);
             this.append(result);
+            this.messageAppendedCount++;
         }
     }
 
@@ -28,4 +31,13 @@ public abstract class BaseAppender implements Appender {
         this.reportLevel = reportLevel;
     }
 
+
+    @Override
+    public String toString() {
+        return String.format("Appender type: %s, Layout type: %s, Report level: %s, Messages appended: %d",
+                this.getClass().getSimpleName(),
+                this.layout.getClass().getSimpleName(),
+                this.reportLevel.toString(),
+                this.messageAppendedCount);
+    }
 }
