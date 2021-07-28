@@ -1,6 +1,5 @@
 package models.appenders;
 
-import enums.ReportLevel;
 import interfaces.File;
 import interfaces.Layout;
 import models.files.LogFile;
