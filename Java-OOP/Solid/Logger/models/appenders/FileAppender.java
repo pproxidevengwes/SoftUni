@@ -6,16 +6,11 @@ import interfaces.Layout;
 import models.files.LogFile;
 
 public class FileAppender extends BaseAppender {
-    private File file;
+     private File file;
 
     public FileAppender(Layout layout) {
         super(layout);
         this.file = new LogFile();
-    }
-
-    @Override
-    public void appendMessage(String dateTine, ReportLevel reportLevel, String message) {
-
     }
 
     @Override
@@ -24,7 +19,7 @@ public class FileAppender extends BaseAppender {
     }
 
     @Override
-    public void setReportLevel(ReportLevel reportLevel) {
-
+    public String toString() {
+        return String.format("%s, File size: %d", super.toString(), this.file.getSize());
     }
 }
