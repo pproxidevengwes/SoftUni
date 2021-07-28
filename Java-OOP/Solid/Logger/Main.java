@@ -19,7 +19,7 @@ public class Main {
             for (int i = 0; i < appenderCount; i++) {
                 String[] tokens = scanner.nextLine().split("\\s+");
 
-                Layout layout = getLayout(tokens[0]);
+                Layout layout = getLayout(tokens[1]);
                 ReportLevel reportLevel = ReportLevel.INFO;
                 if (tokens.length == 3) {
                     reportLevel = ReportLevel.valueOf(tokens[2]);
@@ -39,8 +39,8 @@ public class Main {
                 logMessage(logger, reportLevel, dateTime, message);
                 line = scanner.nextLine();
             }
-            logger.logInfo(logger.getLogInfo());
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e) {
+            System.out.println(logger.getLogInfo());
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
