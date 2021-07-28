@@ -13,6 +13,4 @@ public interface Logger {
 
     String getLogInfo();
 
-    void logInfo(String logInfo);
-
 }
