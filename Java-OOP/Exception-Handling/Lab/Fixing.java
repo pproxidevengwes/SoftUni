@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CustomException {
+public class Fixing {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
