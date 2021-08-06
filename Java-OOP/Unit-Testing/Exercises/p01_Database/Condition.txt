@@ -1,5 +1,6 @@
 Problem 1.	Database
-You are given a simple class - Database. It stores Integers. Your task is to test the class. Write tests, so you are sure its methods are working as intended.
+You are given a simple class - Database. It stores Integers. Your task is to test the class. Write tests,
+so you are sure its methods are working as intended.
 Constraints
 •	Storing array's capacity must be exactly 16 integers.
 o	If the size of the array is not 16 integers long, throw OperationNotSupportedException. 
