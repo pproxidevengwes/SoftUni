@@ -1,4 +1,4 @@
-package main.java.rpg_lab;
+package rpg_lab;
 
 public interface Weapon {
     int getAttackPoints();
