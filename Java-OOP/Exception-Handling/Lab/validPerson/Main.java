@@ -13,7 +13,7 @@ public class Main {
         List<Person> people = new ArrayList<>();
 
         String firstName=reader.readLine();
-        while (firstName.equals("end")) {
+        while (!firstName.equals("end")) {
             String lastName = reader.readLine();
             int age = Integer.parseInt(reader.readLine());
 
