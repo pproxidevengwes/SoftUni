@@ -1,31 +1,31 @@
-package test.java.rpg_lab;
+package rpg_lab;
 
-import main.java.rpg_lab.Hero;
-import main.java.rpg_lab.Target;
-import main.java.rpg_lab.Weapon;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class HeroTest {
+    private final static int EXPERIENCE = 45;
+
+    private Hero hero;
+
+    @Before
+    public void setUp() {
+        Weapon weapon = mock(Weapon.class);
+        this.hero = new Hero("Gandalf", weapon);
+    }
 
     @Test
-    public void testHeroGainsExperienceWhenTargetIsDead() {
+    public void testHeroGainsExperienceWhenTargetIsKilled() {
+        Target target = mock(Target.class);
+        when(target.giveExperience()).thenReturn(EXPERIENCE);
+        when(target.isDead()).thenReturn(true);
 
-        Weapon weapon = Mockito.mock(Weapon.class);
-
-        Target target = Mockito.mock(Target.class);
-
-        Hero hero = new Hero("Thor", weapon);
-
-        Mockito.when(target.isDead()).thenReturn(true);
-        Mockito.when(target.giveExperience()).thenReturn(13);
-
-        hero.attack(target);
-
-        assertEquals(13, hero.getExperience());
-
+        this.hero.attack(target);
+        assertEquals(EXPERIENCE, this.hero.getExperience());
     }
 
 }
