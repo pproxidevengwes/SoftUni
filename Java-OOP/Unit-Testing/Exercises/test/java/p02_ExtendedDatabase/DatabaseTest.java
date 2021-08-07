@@ -2,9 +2,7 @@ package p02_ExtendedDatabase;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import javax.naming.OperationNotSupportedException;
-
 import static org.junit.Assert.*;
 
 public class DatabaseTest {
