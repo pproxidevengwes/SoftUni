@@ -1,9 +1,7 @@
 package p03_IteratorTest;
 
 import org.junit.Test;
-
 import javax.naming.OperationNotSupportedException;
-
 import static org.junit.Assert.*;
 
 public class ListIteratorTest {
