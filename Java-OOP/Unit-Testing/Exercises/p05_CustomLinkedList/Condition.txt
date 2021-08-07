@@ -1,7 +1,0 @@
-Problem 5.	Custom Linked List
-You are given a data structure that needs to be tested. Use the Java file CustomLinkedList.java and:
-•	Create Test Class and Test Methods for all public members that need testing.
-•	Create tests that ensure all methods, getters and setters work correctly.
-•	Use the @Test(expected = ExpectedException.class) annotation for methods that are expected to throw exception
-in case wrong input is entered (those tests don’t need assert messages).
-•	Give meaningful assert messages for failed tests.
