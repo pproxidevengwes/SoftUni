@@ -2,7 +2,6 @@ package p06_TirePressureMonitoringSystem;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import static org.junit.Assert.*;
 
 public class AlarmTest {
