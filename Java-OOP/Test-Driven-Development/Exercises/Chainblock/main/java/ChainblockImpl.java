@@ -1,86 +1,40 @@
-import java.util.*;
+public class TransactionImpl implements Comparable<TransactionImpl>, Transaction{
 
-public class ChainblockImpl implements Chainblock {
+    private int id;
+    private TransactionStatus status;
+    private String from;
+    private String to;
+    private double amount;
 
-    private Map<Integer, Transaction> transactionById;
-
-    public ChainblockImpl(Map<Integer, Transaction> transactionById) {
-        transactionById = new HashMap<>();
+    public TransactionImpl(int id, TransactionStatus status, String from, String to, double amount) {
+        this.id = id;
+        this.status = status;
+        this.from = from;
+        this.to = to;
+        this.amount = amount;
     }
 
-    public ChainblockImpl() {
-        transactionById = new HashMap<>();
+    public int compareTo(TransactionImpl o) {
+        return 0;
     }
 
-
-    public int getCount() {
-        return this.transactionById.size();
+    @Override
+    public int getId() {
+        return this.id;
     }
 
-    public void add(Transaction transaction) {
-        if (!contains(transaction.getId())) {
-            this.transactionById.put(transaction.getId(), transaction);
-        }
+    @Override
+    public TransactionStatus getStatus() {
+        return this.status;
     }
 
-    public boolean contains(Transaction transaction) {
-        return contains(transaction.getId());
+    @Override
+    public void setStatus(TransactionStatus newStatus) {
+        this.status = newStatus;
     }
 
-    public boolean contains(int id) {
-        return this.transactionById.containsKey(id);
-    }
-
-
-    public void changeTransactionStatus(int id, TransactionStatus newStatus) {
-        if (!contains(id)) {
-            throw new IllegalArgumentException();
-        }
-        this.transactionById.get(id).setStatus(newStatus);
-
-    }
-
-    public void removeTransactionById(int id) {
-        if (!contains(id)) {
-
-            throw new IllegalArgumentException();
-        } else {
-            this.transactionById.remove(id);
-        }
-
-
-    }
-
-    public Transaction getById(int id) {
-        if (!contains(id)) {
-            throw new IllegalArgumentException();
-
-        } else {
-            return this.transactionById.get(id);
-        }
-    }
-
-
-    public Iterable<Transaction> getByTransactionStatus(TransactionStatus status) {
-        List<Transaction> transactions = new ArrayList<>();
-
-        for (Transaction value : transactionById.values()) {
-            if (value.getStatus() == status) {
-                transactions.add(value);
-            }
-        }
-
-        if (transactions.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-
-        transactions.sort(Comparator.comparing(Transaction::getAmount).reversed());
-
-        return transactions;
-    }
-
-
-    public Iterator<Transaction> iterator() {
-        return null;
+    @Override
+    public double getAmount() {
+        return this.amount;
     }
 }
