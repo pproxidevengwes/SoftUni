@@ -1,0 +1,28 @@
+nav{
+    background: #D3D3D3;
+    text-align: center;
+}
+
+nav ul{
+    float: center;
+    padding: 15px;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 0px 8px;
+}
+
+nav ul li a {
+    color: #009900;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #009900;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
