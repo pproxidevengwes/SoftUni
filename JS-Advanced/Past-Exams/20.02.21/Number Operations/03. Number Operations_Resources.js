@@ -1,35 +1,33 @@
-const { expect } = require('chai');
-const { numberOperations } = require('./03. Number Operations_Resources');
+const numberOperations = {
+    powNumber: function (num) {
+        return num * num;
+    },
+    numberChecker: function (input) {
+        input = Number(input);
 
-describe('tests for numberOperations', () => {
+        if (isNaN(input)) {
+            throw new Error('The input is not a number!');
+        }
 
-    describe('tests for powNumber()', () => {
-        it('should pow the number', () => {
-            expect(numberOperations.powNumber(2)).to.be.equal(4);
-        });
-    });
+        if (input < 100) {
+            return 'The number is lower than 100!';
+        } else {
+            return 'The number is greater or equal to 100!';
+        }
+    },
+    sumArrays: function (array1, array2) {
 
-    describe('tests for numberChecker()', () => {
-        it('should throw an error with NaN', () => {
-            const errorMsg = 'The input is not a number!';
-            expect(() => numberOperations.numberChecker('a')).to.throw(errorMsg);
-        });
+        const longerArr = array1.length > array2.length ? array1 : array2;
+        const rounds = array1.length < array2.length ? array1.length : array2.length;
 
-        it('should return that the number is lower than 100', () => {
-            expect(numberOperations.numberChecker('99')).to.be.equal('The number is lower than 100!');
-        });
+        const resultArr = [];
 
-        it('should return that the number is greater or equal to 100', () => {
-            expect(numberOperations.numberChecker(100)).to.be.equal('The number is greater or equal to 100!');
-        });
-    });
+        for (let i = 0; i < rounds; i++) {
+            resultArr.push(array1[i] + array2[i]);
+        }
 
-    describe('tests for sumArrays()', () => {
-        it('should sum the arrays', () => {
-            const firstArray = [-1, 4, 6, 7];
-            const secondArray = [3, 2, 1];
-            const expected = JSON.stringify([2, 6, 7, 7]);
-            expect(JSON.stringify(numberOperations.sumArrays(firstArray, secondArray))).to.be.equal(expected);
-        });
-    });
-});
+        resultArr.push(...longerArr.slice(rounds));
+
+        return resultArr
+    }
+};
