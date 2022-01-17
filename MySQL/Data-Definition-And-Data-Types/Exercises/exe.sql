@@ -2,45 +2,45 @@ CREATE DATABASE `minions`;
 USE `minions`;
 
 #01. Create Tables
-CREATE TABLE `minions`(
+CREATE TABLE minions(
 `id` INT PRIMARY KEY AUTO_INCREMENT ,
 `name` VARCHAR(50) NOT NULL,
 `age` INT 
 );
 
-CREATE TABLE `towns`(
+CREATE TABLE towns(
 `town_id` INT PRIMARY KEY AUTO_INCREMENT,
 `name` VARCHAR(30) NOT NULL
 );
 
 #02. Alter Minions Table
-SELECT * FROM `minions`;
-ALTER TABLE `minions`
+SELECT * FROM minions;
+ALTER TABLE minions
 ADD COLUMN `town_id` INT,
 ADD CONSTRAINT fk_minions_towns
 FOREIGN KEY (`town_id`)
-REFERENCES `towns` (`id`);
+REFERENCES towns (`id`);
 
 #03. Insert Records in Both Tables
-INSERT INTO `towns` (`id`, `name`) VALUES
+INSERT INTO towns (`id`, `name`) VALUES
 (1, 'Sofia'),
 (2, 'Plovdiv'),
 (3, 'Varna');
 
-INSERT INTO `minions` (`id`, `name`, `age`, `town_id`) VALUES
+INSERT INTO minions (`id`, `name`, `age`, `town_id`) VALUES
 (1, 'Kevin', 22, 1),
 (2, 'Bob', 15, 3),
 (3, 'Steward', NULL, 2);
 
 #04. Truncate Table Minions
-TRUNCATE `minions`;
+TRUNCATE minions;
 
 #05. Drop All Tables
-DROP TABLE `minions`;
-DROP TABLE `towns`;
+DROP TABLE minions;
+DROP TABLE towns;
 
 #06. Create Table People
-CREATE TABLE `people`(
+CREATE TABLE people(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `name` VARCHAR(200) NOT NULL,
 `picture` MEDIUMBLOB ,
@@ -50,7 +50,7 @@ CREATE TABLE `people`(
 `birthdate` DATE NOT NULL,
 `biography` TEXT);
 
-INSERT INTO `people`(`id`,`name`,`height`,`weight`,`gender`,`birthdate`) 
+INSERT INTO people(`id`,`name`,`height`,`weight`,`gender`,`birthdate`) 
 VALUES (1,'Gosho',NULL,NULL,'m','1997-06-14'),
 (2,'Sasho',NULL,93,'m','1993-08-07'),
 (3,'Pesho',1.65,88,'m','1994-09-25'),
@@ -58,7 +58,7 @@ VALUES (1,'Gosho',NULL,NULL,'m','1997-06-14'),
 (5,'Stranimira',NULL,NULL,'f','1992-03-04');
 
 #07. Create Table Users
-CREATE TABLE `users`(
+CREATE TABLE users(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `username` VARCHAR(30) NOT NULL,
 `password` VARCHAR(26) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `users`(
 `last_login_time` DATETIME,
 `is_deleted` ENUM('true','false'));
 
-INSERT INTO `users`(`id`,`username`,`password`,`last_login_time`,`is_deleted`) 
+INSERT INTO users(`id`,`username`,`password`,`last_login_time`,`is_deleted`) 
 VALUES (1,'martiiii','enigma','2021-12-21 18:51','false'),
 (2,'krisi1010','pilesaszele','2020-08-24 14:22','true'),
 (3,'jorji123','elparoles','2022-01-08 19:43','false'),
@@ -74,36 +74,36 @@ VALUES (1,'martiiii','enigma','2021-12-21 18:51','false'),
 (5,'anichkabanichka','666dtrf','2022-01-10 21:30','false');
                     
 #08. Change Primary Key
-ALTER TABLE `users`   
+ALTER TABLE users  
 DROP PRIMARY KEY,
 ADD CONSTRAINT pk_users 
 PRIMARY KEY(`id`,`username`);
 
 #9. Set Default Value of a Field
-ALTER TABLE `users` 
+ALTER TABLE users
 MODIFY COLUMN `last_login_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
 #10. Set Unique Field
-ALTER TABLE `users`
+ALTER TABLE users
 DROP PRIMARY KEY,
 ADD CONSTRAINT pk_users
-PRIMARY KEY `users`(`id`),
+PRIMARY KEY users (`id`),
 MODIFY COLUMN `username` VARCHAR(50) UNIQUE;
 
-ALTER TABLE `users`
+ALTER TABLE users
 CHANGE `username` `username` VARCHAR(30) UNIQUE;
 
 #11. Movies Database
 CREATE DATABASE `movies`;
 USE `movies`;
 
-CREATE TABLE `directors`(
+CREATE TABLE directors(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `director_name` VARCHAR(45) NOT NULL,
 `notes` TEXT
 );
 
-INSERT INTO `directors`(`director_name`,`notes`)
+INSERT INTO directors(`director_name`,`notes`)
 VALUES ('The Wachowskis',NULL),
 ('Emir Kusturica', NULL),
 ('Robert Rodriguez', NULL),
@@ -111,33 +111,33 @@ VALUES ('The Wachowskis',NULL),
 ('Quentin Tarantino', NULL);
 
 
-CREATE TABLE `genres`(
+CREATE TABLE genres(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `genre_name` VARCHAR(45) NOT NULL,
 `notes` TEXT
 );
 
-INSERT INTO `genres`(`genre_name`,`notes`)
+INSERT INTO genres(`genre_name`,`notes`)
 VALUES ('sci-fi',NULL),
 ('romance',NULL),
 ('action',NULL),
 ('fantasy',NULL),
 ('crime',NULL);
 
-CREATE TABLE `categories`(
+CREATE TABLE categories(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `category_name` VARCHAR(45) NOT NULL,
 `notes` TEXT
 );
 
-INSERT INTO `categories`(`category_name`,`notes`)
+INSERT INTO categories(`category_name`,`notes`)
 VALUES ('Best Feature', NULL),
 ('Best Actor', NULL),
 ('Best Director', NULL),
 ('Best Actress', NULL),
 ('Best Costumes', NULL);
 
-CREATE TABLE `movies`(
+CREATE TABLE movies(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `title` VARCHAR(200) NOT NULL,
 `director_id` INT NOT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE `movies`(
 `notes` TEXT
 ); 
 
-INSERT INTO `movies` 
+INSERT INTO movies 
 VALUES (1, 'The Matrix', 1, '1999', '132 min', 1, 1, '8.7', NULL),
 (2, 'Black Cat, White Ca', 2, '1998', '127 min', 2, 1, '8', NULL),
 (3, 'Machete', 3, '2010', '105 min', 3, 2, '6.6', NULL),
@@ -160,7 +160,7 @@ VALUES (1, 'The Matrix', 1, '1999', '132 min', 1, 1, '8.7', NULL),
 CREATE DATABASE `car_rental`;
 USE `car_rental`;
 
-CREATE TABLE `categories`(
+CREATE TABLE categories(
 id INT PRIMARY KEY AUTO_INCREMENT,
 category VARCHAR(30) NOT NULL,
 daily_rate VARCHAR(30) NOT NULL,
@@ -218,7 +218,7 @@ tax_rate INT,
 order_status TEXT,
 notes TEXT);
 
-INSERT INTO `categories`(category, daily_rate, weekly_rate, monthly_rate, weekend_rate)
+INSERT INTO categories(category, daily_rate, weekly_rate, monthly_rate, weekend_rate)
 VALUES ('first', 3, 20, 70, 5),
 ('second', 4, 22, 80, 7),
 ('third', 5, 31, 115, 9);
@@ -247,12 +247,12 @@ VALUES (2, 2, 1, '2022-01-15', '2022-01-16', 'daily_rate', 0.2),
 CREATE DATABASE soft_uni;
 USE soft_uni;
 
-CREATE TABLE `towns`(
+CREATE TABLE towns(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `name` VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE `addresses`(
+CREATE TABLE addresses(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `address_text` VARCHAR(100) NOT NULL,
 `town_id` INT NOT NULL,
@@ -260,12 +260,12 @@ CONSTRAINT fk_addresses_towns
 FOREIGN KEY (`town_id`) REFERENCES `towns`(`id`)
 );
 
-CREATE TABLE `departments`(
+CREATE TABLE departments(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `name` VARCHAR(20) NOT NULL
 ); 
 
-CREATE TABLE `employees`(
+CREATE TABLE employees(
 `id` INT PRIMARY KEY AUTO_INCREMENT,
 `first_name` VARCHAR(30) NOT NULL,
 `middle_name` VARCHAR(30) NOT NULL,
@@ -282,20 +282,20 @@ FOREIGN KEY (`address_id`) REFERENCES `addresses`(`id`)
 );
 
 #JUDJE
-INSERT INTO `towns` (`name`) VALUES
+INSERT INTO towns (`name`) VALUES
 ('Sofia'),
 ('Plovdiv'),
 ('Varna'),
 ('Burgas');
 
-INSERT INTO `departments`(`name`) VALUES
+INSERT INTO departments (`name`) VALUES
 ('Engineering'),
 ('Sales'),
 ('Marketing'),
 ('Software Development'),
 ('Quality Assurance');
 
-INSERT INTO `employees` (`first_name`, `middle_name`, `last_name`, `job_title`, `department_id`, `hire_date`, `salary`, `address_id`) VALUES
+INSERT INTO employees (`first_name`, `middle_name`, `last_name`, `job_title`, `department_id`, `hire_date`, `salary`, `address_id`) VALUES
 ('Ivan', 'Ivanov', 'Ivanov', '.NET Developer', 4, '2013-02-01', 3500.00, NULL),
 ('Petar', 'Petrov', 'Petrov', 'Senior Engineer', 1, '2004-03-02', 4000.00, NULL),
 ('Maria', 'Petrova', 'Ivanova', 'Intern', 5, '2016-08-28', 525.25, NULL),
@@ -303,27 +303,27 @@ INSERT INTO `employees` (`first_name`, `middle_name`, `last_name`, `job_title`, 
 ('Peter', 'Pan', 'Pan', 'Intern', 3, '2016-08-28', 599.88, NULL);
 
 #14. Basic Select All Fields
-SELECT * FROM `towns`;
-SELECT * FROM `departments`;
-SELECT * FROM `employees`;
+SELECT * FROM towns;
+SELECT * FROM departments;
+SELECT * FROM employees;
 
 #15. Basic Select All Fields and Order Them
-SELECT * FROM `towns` ORDER BY `name`;
-SELECT * FROM `departments` ORDER BY `name`;
-SELECT * FROM `employees` ORDER BY `salary` DESC;
+SELECT * FROM towns ORDER BY name;
+SELECT * FROM departments ORDER BY name;
+SELECT * FROM employees ORDER BY salary DESC;
 
 #16. Basic Select Some Fields
-SELECT `name` FROM `towns`
-ORDER BY `name` ASC;
-SELECT `name` FROM `departments`
-ORDER BY `name` ASC;
+SELECT name FROM `towns
+ORDER BY name ASC;
+SELECT name FROM departments
+ORDER BY name ASC;
 SELECT `first_name`, `last_name`, `job_title`, `salary` FROM `employees`
-ORDER BY `salary` DESC;
+ORDER BY salary DESC;
 
 #17. Increase Employees Salary
-UPDATE `employees` 
-SET `salary` = `salary` * 1.1;
-SELECT `salary` FROM `employees`;
+UPDATE employees
+SET salary = salary * 1.1;
+SELECT salary FROM employees;
 
 #18. Delete All Records
 DELETE FROM `occupancies`;
