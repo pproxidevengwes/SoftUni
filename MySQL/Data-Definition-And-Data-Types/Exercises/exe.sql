@@ -1,3 +1,4 @@
+-- Exercise --
 CREATE DATABASE `minions`;
 USE `minions`;
 
