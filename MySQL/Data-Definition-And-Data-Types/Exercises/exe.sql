@@ -313,17 +313,16 @@ SELECT * FROM departments ORDER BY name;
 SELECT * FROM employees ORDER BY salary DESC;
 
 #16. Basic Select Some Fields
-SELECT name FROM `towns
-ORDER BY name ASC;
-SELECT name FROM departments
-ORDER BY name ASC;
+SELECT `name` FROM `towns`
+ORDER BY `name` ASC;
+SELECT `name` FROM `departments`
+ORDER BY `name` ASC;
 SELECT `first_name`, `last_name`, `job_title`, `salary` FROM `employees`
-ORDER BY salary DESC;
+ORDER BY `salary` DESC;
 
 #17. Increase Employees Salary
 UPDATE employees
 SET salary = salary * 1.1;
 SELECT salary FROM employees;
-
 #18. Delete All Records
 DELETE FROM `occupancies`;
