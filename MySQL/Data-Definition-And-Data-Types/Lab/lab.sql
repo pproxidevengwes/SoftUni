@@ -1,3 +1,4 @@
+-- Lab --
 CREATE DATABASE `gamebar`;
 USE `gamebar`;
 
