@@ -211,7 +211,7 @@ CREATE TABLE payments(
 `payment_id` INT PRIMARY KEY AUTO_INCREMENT,
 `payment_date` DATE,
 `payment_amount` DECIMAL(8,2),
-`student_id` INT NOT NULL,
+`student_id` INT,
 CONSTRAINT fk_payments_students
 FOREIGN KEY (`student_id`)
 REFERENCES students(`student_id`)
