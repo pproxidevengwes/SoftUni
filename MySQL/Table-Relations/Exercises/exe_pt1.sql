@@ -1,4 +1,4 @@
--- Exercise --
+-- PT1 --
 CREATE DATABASE table_relations;
 USE table_relations;
 
@@ -111,7 +111,7 @@ INSERT INTO students_exams (`student_id`, `exam_id`) VALUE
 (2, 102),
 (2, 103);
 
---------------------------------------------
+
 #04. Self-Referencing
 CREATE TABLE teachers(
 `teacher_id` INT PRIMARY KEY AUTO_INCREMENT,
@@ -131,116 +131,3 @@ ALTER TABLE teachers
 ADD CONSTRAINT fk_teacher_manager
 FOREIGN KEY (manager_id)
 REFERENCES teachers(teacher_id);
-
---------------------------------------------
-CREATE DATABASE online_store;
-USE online_store;
-
-#05. Online Store Database
-CREATE TABLE cities (
-`city_id` INT PRIMARY KEY AUTO_INCREMENT,
-`name` VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE customers (
-`customer_id` INT PRIMARY KEY AUTO_INCREMENT,
-`name` VARCHAR(50) NOT NULL,
-`birthday` DATE,
-`city_id` INT,
-CONSTRAINT fk_customers_cities
-FOREIGN KEY (`city_id`)
-REFERENCES cities(`city_id`)
-);
-
-CREATE TABLE orders (
-`order_id` INT PRIMARY KEY AUTO_INCREMENT,
-`customer_id` INT,
-CONSTRAINT fk_orders_customers
-FOREIGN KEY (`customer_id`)
-REFERENCES customers(`customer_id`)
-);
-
-CREATE TABLE item_types (
-`item_type_id` INT PRIMARY KEY AUTO_INCREMENT,
-`name` VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE items (
-`item_id` INT PRIMARY KEY AUTO_INCREMENT,
-`name` VARCHAR(50) NOT NULL,
-`item_type_id` INT,
-CONSTRAINT fk_items_item_types
-FOREIGN KEY (`item_type_id`)
-REFERENCES item_types(`item_type_id`)
-);
-
-CREATE TABLE order_items (
-`order_id` INT NOT NULL,
-`item_id` INT NOT NULL,
-CONSTRAINT pk_order_items
-PRIMARY KEY (order_id, item_id),
-CONSTRAINT fk_order_items
-FOREIGN KEY (`order_id`)
-REFERENCES orders(`order_id`),
-CONSTRAINT fk_items_orders
-FOREIGN KEY (`item_id`)
-REFERENCES items(`item_id`)
-);
-
---------------------------------------------
-CREATE DATABASE university_database;
-USE university_database;
-
-#06. University Database
-CREATE TABLE majors(
-`major_id` INT PRIMARY KEY AUTO_INCREMENT,
-`name` VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE students(
-`student_id` INT PRIMARY KEY AUTO_INCREMENT,
-`student_number` VARCHAR(12) NOT NULL,
-`student_name` VARCHAR(50) NOT NULL,
-`major_id` INT,
-CONSTRAINT fk_students_majors
-FOREIGN KEY (`major_id`)
-REFERENCES majors(`major_id`)
-);
-
-CREATE TABLE payments(
-`payment_id` INT PRIMARY KEY AUTO_INCREMENT,
-`payment_date` DATE,
-`payment_amount` DECIMAL(8,2),
-`student_id` INT,
-CONSTRAINT fk_payments_students
-FOREIGN KEY (`student_id`)
-REFERENCES students(`student_id`)
-);
-
-CREATE TABLE subjects(
-`subject_id` INT PRIMARY KEY AUTO_INCREMENT,
-`subject_name` VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE agenda(
-`student_id` INT,
-`subject_id` INT,
-CONSTRAINT pk_students_subjects
-PRIMARY KEY (student_id, subject_id),
-CONSTRAINT fk_agenda_students
-FOREIGN KEY (`student_id`)
-REFERENCES students(`student_id`),
-CONSTRAINT fk_agenda_subjects
-FOREIGN KEY (`subject_id`)
-REFERENCES subjects(`subject_id`)
-);
-
---------------------------------------------
-USE geography;
-
-#09. Peaks in Rila
-SELECT m.mountain_range, p.peak_name, p.elevation AS 'peak_elevation'
-FROM mountains AS m
-JOIN peaks AS p ON p.mountain_id = m.id
-WHERE mountain_range = 'Rila'
-ORDER BY peak_elevation DESC;
