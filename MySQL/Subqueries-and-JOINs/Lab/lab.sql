@@ -9,11 +9,22 @@ ORDER BY `employee_id`
 LIMIT 5;
 
 #2. Towns and Addresses
-
-
+SELECT t.`town_id`, t.`name`, a.`address_text`
+FROM `towns` AS t
+JOIN `addresses` AS a
+ON t.`town_id` = a.`town_id`
+WHERE t.`name` IN('San Francisco', 'Sofia', 'Carnation')
+ORDER BY `town_id`, `address_id`;
 
 #3. Employees Without Managers
-
+SELECT `employee_id`, `first_name`, `last_name`, `department_id`, `salary` 
+FROM `employees` AS e
+WHERE `manager_id` IS NULL;
 
 #4. High Salary
-
+SELECT count(`salary`)
+FROM `employees`
+WHERE `salary` > (
+SELECT avg(`salary`)
+FROM `employees`
+);
