@@ -54,7 +54,8 @@ WHERE e.manager_id IN (3, 7)
 ORDER BY e.first_name;
 
 #10. Employee Summary
-SELECT e.employee_id, concat(e.first_name, ' ', e.last_name) AS 'employee_name',
+SELECT e.employee_id, 
+concat(e.first_name, ' ', e.last_name) AS 'employee_name',
 concat(m.first_name, ' ', m.last_name) AS 'manager_name', d.name 
 FROM employees AS e
 JOIN employees AS m ON e.manager_id = m.employee_id
