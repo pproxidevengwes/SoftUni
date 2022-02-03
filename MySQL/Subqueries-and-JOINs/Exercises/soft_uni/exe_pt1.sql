@@ -80,15 +80,14 @@ ORDER BY e.first_name;
 SELECT e.employee_id, 
 concat_ws(' ', e.first_name, e.last_name) AS 'employee_name',
 concat_ws(' ', m.first_name, m.last_name) AS 'manager_name',
-d.name AS 'department_name'
-FROM employees AS e
+d.name AS 'department_name' FROM employees AS e
 JOIN employees AS m ON e.manager_id = m.employee_id
 JOIN departments AS d ON e.department_id = d.department_id
 ORDER BY e.employee_id
 LIMIT 5;
 
 #11. Min Average Salary
-SELECT avg(e.salary) AS 'min_average_salary'
+SELECT avg(e.salary) AS 'min_average_salary' 
 FROM employees AS e
 GROUP BY e.department_id 
 ORDER BY min_average_salary
