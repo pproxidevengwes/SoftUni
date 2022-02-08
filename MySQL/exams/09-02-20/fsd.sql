@@ -104,9 +104,11 @@ WHERE coach_id = c.id) >= 1;
 #04. Delete
 DELETE FROM players WHERE age >= 45; 
 
+
 #05. Players
 SELECT first_name, age, salary FROM players
 ORDER BY salary DESC;
+
 
 #06. Young offense players without contract
 SELECT p.`id`, concat_ws(' ', `first_name`, `last_name`) AS 'full_name',
@@ -115,7 +117,6 @@ JOIN skills_data AS sk ON sk.id = p.skills_data_id
 WHERE `age` < 23 AND `position` = 'A' AND `hire_date` IS NULL 
 AND sk.`strength` > 50
 ORDER BY salary;
-
 
 
 #07. Detail info for all teams
@@ -152,7 +153,6 @@ GROUP BY c.`name`
 ORDER BY total_count_of_players DESC, c.`name`;
     
 
-
 #10. Find all players that play on stadium
 DELIMITER $$
 CREATE FUNCTION udf_stadium_players_count(stadium_name VARCHAR(30))
@@ -170,6 +170,7 @@ DELIMITER ;
 
 DROP FUNCTION udf_stadium_players_count;
 SELECT udf_stadium_players_count ('Linklinks') as `count`;
+
 
 #11. Find good playmaker by teams
 DELIMITER $$
