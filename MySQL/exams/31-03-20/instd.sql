@@ -96,16 +96,14 @@ ORDER BY commentsCount DESC, p.id
 LIMIT 5;
 
 #07. Lucky users
-SELECT concat_ws(' ', u.id, u.username), u.email
-FROM users AS u
+SELECT concat_ws(' ', u.id, u.username), u.email FROM users AS u
 JOIN users_photos AS up ON u.id = up.user_id
 AND u.id = up.photo_id
 ORDER BY u.id;
 
 #08. Count likes and comments
 SELECT p.id, count(DISTINCT l.id) AS 'likes_count',
-count(DISTINCT c.id) AS 'comments_count'
-FROM photos AS p
+count(DISTINCT c.id) AS 'comments_count' FROM photos AS p
 LEFT JOIN likes AS l ON p.id = l.photo_id
 LEFT JOIN comments AS c ON p.id = c.photo_id
 GROUP BY p.id
@@ -113,8 +111,7 @@ ORDER BY likes_count DESC, comments_count DESC, p.id DESC;
 
 #09. The photo on the tenth day of the month
 SELECT concat(left(p.`description`, 30), '...') AS 'summary',
-p.`date`
-FROM photos AS p
+p.`date` FROM photos AS p
 WHERE DAY(p.`date`) = 10
 GROUP BY p.id, p.`date`
 ORDER BY p.`date` DESC;
@@ -125,8 +122,7 @@ CREATE FUNCTION udf_users_photos_count(username VARCHAR (30))
 RETURNS INT
 DETERMINISTIC
 BEGIN
-RETURN (SELECT count(*)
-FROM users AS u
+RETURN (SELECT count(*) FROM users AS u
 JOIN users_photos AS up ON u.id = up.user_id
 WHERE u.username = username);
 END $$
@@ -142,8 +138,7 @@ IF((SELECT a.address FROM addresses AS a
 WHERE address = a.address) IS NOT NULL)
 THEN UPDATE users AS u 
 JOIN addresses AS aa ON u.id = aa.user_id
-SET u.age = u.age + 10
-WHERE aa.address = address AND aa.town = town;
+SET u.age = u.age + 10 WHERE aa.address = address AND aa.town = town;
 END IF;
 END $$
 DELIMITER ;
