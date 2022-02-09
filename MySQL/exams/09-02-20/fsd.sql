@@ -1,5 +1,4 @@
 CREATE DATABASE `fsd`;
-
 USE fsd;
 
 #01. Table Design
