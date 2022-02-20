@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.Scanner;
 
-public class Main {
+public class Diablo {
 
     public static void main(String[] args) throws SQLException {
         Properties props = new Properties();
