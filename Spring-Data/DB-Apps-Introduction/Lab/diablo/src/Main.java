@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.Scanner;
 
-public class Diablo {
+public class Main {
 
     public static void main(String[] args) throws SQLException {
         Properties props = new Properties();
@@ -12,7 +12,7 @@ public class Diablo {
         Connection connection = DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/diablo", props);
 
-        PreparedStatement statement = connection.prepareStatement("SELECT user_name, first_name, last_name, COUNT(ug.id) " +
+        PreparedStatement statement = connection.prepareStatement("SELECT user_name, first_name, last_name, count(ug.id) " +
                 "FROM users AS u " +
                 "JOIN users_games AS ug ON ug.user_id = u.id " +
                 "WHERE user_name = ? " +
@@ -21,6 +21,7 @@ public class Diablo {
         Scanner scanner = new Scanner(System.in);
         String username= scanner.nextLine();
         statement.setString(1, username);
+        
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()){
@@ -28,7 +29,7 @@ public class Diablo {
             String dbUsername = resultSet.getString("user_name");
             String dbFirstName = resultSet.getString("first_name");
             String dbLastName = resultSet.getString("last_name");
-            int dbGamesCount = resultSet.getInt("COUNT(ug.id)");
+            int dbGamesCount = resultSet.getInt("count(ug.id)");
 
             System.out.printf("User: %s\n%s %s has played %d games \n", dbUsername, dbFirstName, dbLastName, dbGamesCount);
         } else {
