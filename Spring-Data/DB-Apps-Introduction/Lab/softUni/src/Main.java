@@ -3,7 +3,7 @@ import java.util.ArrayDeque;
 import java.util.Properties;
 import java.util.Scanner;
 
-public class SoftUni {
+public class Main {
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter username default (root): ");
@@ -27,11 +27,13 @@ public class SoftUni {
 
         String salary = scanner.nextLine();
         statement.setDouble(1, Double.parseDouble(salary));
+        
         ResultSet rs = statement.executeQuery();
 
         while (rs.next()){
             System.out.println(rs.getString("first_name") + " "+ rs.getString("last_name"));
         }
+        
         connection.close();
     }
 }
