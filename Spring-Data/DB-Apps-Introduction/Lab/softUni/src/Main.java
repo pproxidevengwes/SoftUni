@@ -18,7 +18,7 @@ public class Main {
 
         Properties props = new Properties();
         props.setProperty("user","root");
-        props.setProperty("password","amara2113");
+        props.setProperty("password","");
 
         Connection connection = DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/soft_uni", props);
