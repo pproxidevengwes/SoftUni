@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class _06_RemoveVillain {
     public static void main(String[] args) throws SQLException {
         Properties props = new Properties();
-        props.setProperty("user", "root");
-        props.setProperty("password", "amara2113");
+        props.setProperty("user", "");
+        props.setProperty("password", "");
 
         Connection connection = DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/minions_db", props);
