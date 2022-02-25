@@ -6,14 +6,9 @@ import anotations.Id;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class EntityManager<E> implements DBContext<E> {
@@ -34,6 +29,16 @@ public class EntityManager<E> implements DBContext<E> {
         }
 
         return doUpdate(entity, idColumn);
+    }
+
+    @Override
+    public void doCreate(Class<E> entityClass) throws SQLException {
+
+    }
+
+    @Override
+    public void doAlter(E entity) throws SQLException {
+
     }
 
     private boolean doInsert(E entity, Field idColumn) throws SQLException, IllegalAccessException {
@@ -76,31 +81,33 @@ public class EntityManager<E> implements DBContext<E> {
 
 
     @Override
-    public Iterable<E> find(Class<E> table) {
-        return Arrays.stream(table.getDeclaredFields())
-                .filter(e -> e.isAnnotationPresent(Entity.class))
-                .map(e -> e.getClass())
-                .collect(Collectors.toMap(e -> e));
+    public Iterable<E> find(Class<E> table) throws SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        return find(table, null);
     }
 
     @Override
-    public Iterable<E> find(Class<E> table, String where) {
-        return null;
+    public Iterable<E> find(Class<E> table, String where) throws SQLException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        String tableName = getTableName(table);
+        String selectFirstQuery = String.format
+                ("SELECT * FROM %s %s;", tableName, where != null ? "WHERE " + where : "");
+
+        PreparedStatement preparedStatement = connection.prepareStatement(selectFirstQuery);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<E> result = new ArrayList<>();
+
+        while (resultSet.next()) {
+            E entity = table.getDeclaredConstructor().newInstance();
+            fillEntity(table, resultSet, entity);
+            result.add(entity);
+        }
+        return result;
     }
 
     @Override
     public E findFirst(Class<E> table) throws SQLException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Statement statement = connection.createStatement();
-        String tableName = getTableNameFromEntity(table);
-        String query = String.format("SELECT * FROM %s LIMIT 1;",
-                tableName);
-
-        ResultSet resultSet = statement.executeQuery(query);
-        E entity = table.getDeclaredConstructor().newInstance();
-        resultSet.next();
-        fillEntity(table, resultSet, entity);
-
-        return entity;
+        return findFirst(table, null);
     }
 
     @Override
@@ -116,6 +123,11 @@ public class EntityManager<E> implements DBContext<E> {
         fillEntity(table, resultSet, entity);
 
         return entity;
+    }
+
+    @Override
+    public boolean delete(E toDelete) throws IllegalAccessException, SQLException {
+        return false;
     }
 
     private String getTableNameFromEntity(Class<E> table) {
@@ -189,5 +201,3 @@ public class EntityManager<E> implements DBContext<E> {
                 .collect(Collectors.joining(","));
     }
 }
-
-
