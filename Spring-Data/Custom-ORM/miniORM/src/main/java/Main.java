@@ -15,12 +15,28 @@ public class Main {
         createConnection("", "", "custom_orm");
         Connection connection = MyConnector.getConnection();
 
-        EntityManager<User> userEntityManager = new EntityManager<>(connection);
+        EntityManager<User> userEntityManager = new EntityManager<>(connection);EntityManager<Address> addressEntityManager = new EntityManager<>(connection);
+
+        addressEntityManager.doCreate(Address.class);
 
         User user = new User("pesho", 25, LocalDate.now());
+        user.setUsername("pesho_new_finalv2");
 
+//        userEntityManager.doCreate(User.class);
+//        userEntityManager.doAlter(User.class);
         userEntityManager.persist(user);
 
-        User foundUser = userEntityManager.findFirst(User.class, "age > 30");
+        Iterable<User> first = userEntityManager.find(User.class);
+        System.out.println(first.toString());
+
+        User toDelete = userEntityManager.findFirst(User.class, "id > 3");
+        System.out.println(toDelete);
+
+        userEntityManager.delete(toDelete);
+
+        Iterable<User> second = userEntityManager.find(User.class);
+        System.out.println(second.toString());
+
+        connection.close();
     }
 }
