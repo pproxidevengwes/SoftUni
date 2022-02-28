@@ -1,8 +1,8 @@
 package entities;
 
-import anotations.Column;
-import anotations.Entity;
-import anotations.Id;
+import annotations.Column;
+import annotations.Entity;
+import annotations.Id;
 
 import java.time.LocalDate;
 
@@ -17,15 +17,21 @@ public class User {
     private String username;
 
     @Column(name = "age")
-    private long age;
+    private int age;
 
     @Column(name = "registration_date")
-    private LocalDate resignationDate;
+    private LocalDate registrationDate;
 
-    public User(String username, int age, LocalDate resignationDate) {
+    @Column(name = "last_logged_in")
+    private LocalDate lastLoggedIn;
+
+    public User() {}
+
+    public User(String username, int age, LocalDate registrationDate) {
         this.username = username;
         this.age = age;
-        this.resignationDate = resignationDate;
+        this.registrationDate = registrationDate;
+        this.lastLoggedIn = LocalDate.now();
     }
 
     public long getId() {
@@ -44,19 +50,38 @@ public class User {
         this.username = username;
     }
 
-    public long getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(long age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public LocalDate getResignationDate() {
-        return resignationDate;
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setResignationDate(LocalDate resignationDate) {
-        this.resignationDate = resignationDate;
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public LocalDate getLastLoggedIn() {
+        return lastLoggedIn;
+    }
+
+    public void setLastLoggedIn(LocalDate lastLoggedIn) {
+        this.lastLoggedIn = lastLoggedIn;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+                ", registrationDate=" + registrationDate +
+                ", lastLoggedIn=" + lastLoggedIn +
+                '}';
     }
 }
