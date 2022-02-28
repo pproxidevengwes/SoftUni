@@ -1,3 +1,4 @@
+
 package orm;
 
 import java.sql.Connection;
@@ -9,12 +10,14 @@ public class MyConnector {
     private static Connection connection;
     private static final String jdbcString = "jdbc:mysql://localhost:3306/";
 
-    public static void createConnection(String username, String password, String dbName) throws SQLException {
-        Properties props = new Properties();
-        props.setProperty("user", "root");
-        props.setProperty("password", "amara2113");
+    private MyConnector() {}
 
-        connection = DriverManager.getConnection(jdbcString + dbName, props);
+    public static void createConnection(String user, String password, String dbName) throws SQLException {
+        Properties properties = new Properties();
+        properties.setProperty("user", user);
+        properties.setProperty("password", password);
+
+        connection = DriverManager.getConnection(jdbcString + dbName, properties);
     }
 
     public static Connection getConnection() {
