@@ -73,11 +73,10 @@ public class EntityManager<E> implements DBContext<E> {
         String tableName = getTableName(entity.getClass());
         List<String> tableFields = getColumnsWithoutId(entity.getClass()); // username, age, registration_date
         List<String> tableValues = getColumnsValuesWithoutId(entity);
-
         List<String> setStatements = new ArrayList<>();
+        
         for (int i = 0; i < tableFields.size(); i++) {
             String statement = tableFields.get(i) + " = " + tableValues.get(i);
-
             setStatements.add(statement);
         }
 
@@ -115,11 +114,9 @@ public class EntityManager<E> implements DBContext<E> {
     @Override
     public boolean delete(E toDelete) throws IllegalAccessException, SQLException {
         String tableName = getTableName(toDelete.getClass());
-
         Field idColumn = getIdColumn(toDelete.getClass());
         String idColumnName = getSQLColumnName(idColumn);
         Object idColumnValue = getFieldValue(toDelete, idColumn);
-
         String query = String.format("DELETE FROM %s WHERE %s = %s",
                 tableName, idColumnName, idColumnValue);
 
@@ -130,20 +127,20 @@ public class EntityManager<E> implements DBContext<E> {
 
     private List<E> baseFind(Class<E> table, String where, String limit) throws SQLException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         String tableName = getTableName(table);
-
         String selectQuery = String.format("SELECT * FROM %s %s %s",
                 tableName,
                 where != null ? "WHERE " + where : "",
                 limit != null ? limit : "");
 
         PreparedStatement statement = connection.prepareStatement(selectQuery);
+        
         ResultSet resultSet = statement.executeQuery();
 
         List<E> result = new ArrayList<>();
+        
         while (resultSet.next()) {
             E entity = table.getDeclaredConstructor().newInstance();
             fillEntity(table, resultSet, entity);
-
             result.add(entity);
         }
 
@@ -165,19 +162,15 @@ public class EntityManager<E> implements DBContext<E> {
 
         if (fieldType == int.class || fieldType == Integer.class) {
             int value = resultSet.getInt(fieldName);
-
             declaredField.set(entity, value);
         } else if (fieldType == long.class || fieldType == Long.class) {
             long value = resultSet.getLong(fieldName);
-
             declaredField.set(entity, value);
         } else if (fieldType == LocalDate.class) {
             LocalDate value = LocalDate.parse(resultSet.getString(fieldName));
-
             declaredField.set(entity, value);
         } else {
             String value = resultSet.getString(fieldName);
-
             declaredField.set(entity, value);
         }
     }
@@ -192,8 +185,8 @@ public class EntityManager<E> implements DBContext<E> {
 
     private List<String> getColumnsValuesWithoutId(E entity) throws IllegalAccessException {
         List<Field> fields = getEntityColumnFieldsWithoutId(entity.getClass());
-
         List<String> values = new ArrayList<>();
+        
         for (Field field : fields) {
             Object o = getFieldValue(entity, field);
 
@@ -227,7 +220,6 @@ public class EntityManager<E> implements DBContext<E> {
                 .map(field -> {
                     String fieldName = getSQLColumnName(field);
                     String sqlType = getSQLType(field.getType());
-
                     return fieldName + " " + sqlType;
                 })
                 .collect(Collectors.joining(","));
@@ -236,17 +228,15 @@ public class EntityManager<E> implements DBContext<E> {
     private String getAddColumnStatementsForNewFields(Class<E> entityClass) throws SQLException {
         Set<String> sqlColumns = getSQLColumnNames(entityClass);
         List<Field> fields = getEntityColumnFieldsWithoutId(entityClass);
-
         List<String> allAddStatements = new ArrayList<>();
+        
         for (Field field : fields) {
             String fieldName = getSQLColumnName(field);
 
             if (sqlColumns.contains(fieldName)) {
                 continue;
             }
-
             String sqlType = getSQLType(field.getType());
-
             String addStatement = String.format("ADD COLUMN %s %s", fieldName, sqlType);
             allAddStatements.add(addStatement);
         }
@@ -258,7 +248,6 @@ public class EntityManager<E> implements DBContext<E> {
         String tableName = getTableName(entityClass);
         Field idColumn = getIdColumn(entityClass);
         String idColumnName = getSQLColumnName(idColumn);
-
         String schemaQuery = "SELECT COLUMN_NAME FROM information_schema.`COLUMNS` c" +
                 " WHERE c.TABLE_SCHEMA = 'custom-orm'" +
                 " AND COLUMN_NAME != '%s'" +
@@ -269,9 +258,9 @@ public class EntityManager<E> implements DBContext<E> {
         ResultSet resultSet = statement.executeQuery();
 
         Set<String> result = new HashSet<>();
+        
         while(resultSet.next()) {
             String columnName = resultSet.getString("COLUMN_NAME");
-
             result.add(columnName);
         }
 
@@ -280,6 +269,7 @@ public class EntityManager<E> implements DBContext<E> {
 
     private String getSQLType(Class<?> type) {
         String sqlType = "";
+        
         if (type == Integer.class || type == int.class) {
             sqlType = "INT";
         } else if (type == String.class) {
@@ -297,13 +287,11 @@ public class EntityManager<E> implements DBContext<E> {
         if (annotationsByType.length == 0) {
             throw new UnsupportedOperationException("Class must be Entity");
         }
-
         return annotationsByType[0].name();
     }
 
     private Object getFieldValue(E entity, Field idColumn) throws IllegalAccessException {
         idColumn.setAccessible(true);
-
         return idColumn.get(entity);
     }
 
