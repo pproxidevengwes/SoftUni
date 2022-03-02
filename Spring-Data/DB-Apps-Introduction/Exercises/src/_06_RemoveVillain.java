@@ -58,7 +58,8 @@ public class _06_RemoveVillain {
         }
         
         System.out.println(villainName + " was deleted");
-        System.out.println(countMinionsDeleted + "minions released");
+        System.out.println(countMinionsDeleted + " minions released");
+
         connection.close();
     }
 }
