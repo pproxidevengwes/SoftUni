@@ -11,6 +11,8 @@ public class _08_IncreaseMinionsAge {
         Connection connection = DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/minions_db", props);
 
+        System.out.print("Enter minion(s) id: ");
+
         Scanner scanner = new Scanner(System.in);
         String[] minionId = scanner.nextLine().split("\\s+");
 
