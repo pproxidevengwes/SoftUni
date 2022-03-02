@@ -10,6 +10,8 @@ public class _03_SelectByVillain {
 
         Connection connection = DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/minions_db", props);
+        
+        System.out.print("Enter Villain id: ");
 
         Scanner scanner = new Scanner(System.in);
         int villainId = Integer.parseInt(scanner.nextLine());
