@@ -12,6 +12,8 @@ public class _05_ChangeTownsNames {
 
         Connection connection = DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/minions_db", props);
+        
+        System.out.print("Enter country: ");
 
         Scanner scanner = new Scanner(System.in);
         String country = scanner.nextLine();
