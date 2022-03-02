@@ -31,7 +31,8 @@ public class _03_SelectByVillain {
                 "SELECT m.name, m.age " +
                         "FROM minions as m " +
                         "JOIN minions_villains as mv ON mv.minion_id = m.id " +
-                        "WHERE mv.villain_id = 1;");
+                        "WHERE mv.villain_id = ?;");
+        statement.setInt(1, villainId);
 
         ResultSet minionsSet = statement.executeQuery();
 
