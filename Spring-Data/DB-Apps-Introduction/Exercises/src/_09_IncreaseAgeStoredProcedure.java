@@ -10,6 +10,8 @@ public class _09_IncreaseAgeStoredProcedure {
 
         Connection connection = DriverManager
                 .getConnection("jdbc:mysql://localhost:3306/minions_db", props);
+        
+        System.out.print("Enter minion id: ");
 
         Scanner scanner = new Scanner(System.in);
         int minionId = Integer.parseInt(scanner.nextLine());
