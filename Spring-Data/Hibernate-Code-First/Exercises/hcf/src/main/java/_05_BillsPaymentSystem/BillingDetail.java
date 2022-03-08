@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "billing_details")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-abstract class BillingDetail {
+public abstract class BillingDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
