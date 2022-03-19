@@ -74,7 +74,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
 //        11.
 //        System.out.print("Enter book title: ");
-//        this.bookService.findBook(scanner.nextLine());
+//        this.bookService.findBook(scanner.nextLine().trim);
 
     }
 
