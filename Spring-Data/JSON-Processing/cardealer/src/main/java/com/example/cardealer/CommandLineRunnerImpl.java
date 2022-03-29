@@ -3,8 +3,6 @@ package com.example.cardealer;
 import com.example.cardealer.constants.GlobalApplicationConstants;
 import com.example.cardealer.model.dto.*;
 import com.example.cardealer.services.*;
-import com.example.jsonex.cardealer.model.dto.*;
-import com.example.jsonex.cardealer.services.*;
 import com.google.gson.Gson;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,6 +17,14 @@ import java.util.List;
 
 @Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
+    public static final String FILE_PATH_READ = "src/main/resources/files/";
+    public static final String FILE_PATH_OUT = "src/main/resources/files/out/";
+    public static final String SALES_DISCOUNTS = "sales-discounts.json";
+    public static final String CUSTOMERS_TOTAL_SALES = "customers-total-sales.json";
+    public static final String CARS_AND_PARTS = "cars-and-parts.json";
+    public static final String LOCAL_SUPPLIERS = "local-suppliers.json";
+    public static final String TOYOTA_CARS = "toyota-cars.json";
+    public static final String ORDERED_CUSTOMERS = "ordered-customers.json";
 
     private final BufferedReader reader;
     private final Gson gson;
@@ -63,7 +69,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         String content = gson.toJson(saleDiscountCustomerDtos);
 
-        writeToFile((GlobalApplicationConstants.FILE_PATH_OUT + GlobalApplicationConstants.SALES_DISCOUNTS), content);
+        writeToFile((FILE_PATH_OUT + SALES_DISCOUNTS), content);
     }
 
     private void q5CustomerTotalSales() throws IOException {
@@ -71,7 +77,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         String content = gson.toJson(customerTotalSalesDtos);
 
-        writeToFile((GlobalApplicationConstants.FILE_PATH_OUT + GlobalApplicationConstants.CUSTOMERS_TOTAL_SALES), content);
+        writeToFile((FILE_PATH_OUT + CUSTOMERS_TOTAL_SALES), content);
     }
 
     private void q4CarsAndParts() throws IOException {
@@ -79,7 +85,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         String content = gson.toJson(carsAndPartsDtos);
 
-        writeToFile((GlobalApplicationConstants.FILE_PATH_OUT + GlobalApplicationConstants.CARS_AND_PARTS), content);
+        writeToFile((FILE_PATH_OUT + CARS_AND_PARTS), content);
     }
 
     private void q3LocalSuppliers() throws IOException {
@@ -87,7 +93,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         String content = gson.toJson(localSuppliersDtos);
 
-        writeToFile((GlobalApplicationConstants.FILE_PATH_OUT + GlobalApplicationConstants.LOCAL_SUPPLIERS), content);
+        writeToFile((FILE_PATH_OUT + LOCAL_SUPPLIERS), content);
     }
 
     private void q2CarsFromMakeToyota() throws IOException {
@@ -95,7 +101,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         String content = gson.toJson(carsToyotaDtos);
 
-        writeToFile((GlobalApplicationConstants.FILE_PATH_OUT + GlobalApplicationConstants.TOYOTA_CARS), content);
+        writeToFile((FILE_PATH_OUT + TOYOTA_CARS), content);
     }
 
     private void q1OrderedCustomers() throws IOException {
@@ -103,7 +109,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         String content = gson.toJson(customerOrderedCapitalDtos);
 
-        writeToFile(GlobalApplicationConstants.FILE_PATH_OUT + GlobalApplicationConstants.ORDERED_CUSTOMERS, content);
+        writeToFile(FILE_PATH_OUT + ORDERED_CUSTOMERS, content);
     }
 
     private void writeToFile(String filePath, String content) throws IOException {
