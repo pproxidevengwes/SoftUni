@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toSet());
 
        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%s owns the following games:", user.getFullName())).append(System.lineSeparator());
+        sb.append(String.format("%s owns the following games:%n", user.getFullName()));
 
         for (UserOwnedGamesDto userOwnedGame : userOwnedGames) {
             sb.append(userOwnedGame.getTitle()).append(System.lineSeparator());
