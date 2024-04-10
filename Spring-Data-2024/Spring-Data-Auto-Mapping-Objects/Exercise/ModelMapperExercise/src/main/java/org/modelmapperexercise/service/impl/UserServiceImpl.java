@@ -106,11 +106,12 @@ public class UserServiceImpl implements UserService {
                 .map(g -> modelMapper.map(g, UserOwnedGamesDto.class))
                 .collect(Collectors.toSet());
 
-        StringBuilder sb = new StringBuilder();
+       StringBuilder sb = new StringBuilder();
         sb.append(String.format("%s owns the following games:", user.getFullName())).append(System.lineSeparator());
 
-        userOwnedGames.forEach(g -> sb.append(g.getTitle()).append(System.lineSeparator()));
-        return sb.toString().trim();
-
+        for (UserOwnedGamesDto userOwnedGame : userOwnedGames) {
+            sb.append(userOwnedGame.getTitle()).append(System.lineSeparator());
+        }
+        return sb.toString();
     }
 }
