@@ -1,0 +1,14 @@
+Problem 4.	Generic Swap Method Integers
+Use the description of the previous problem but now, test your list of generic boxes with Integers.
+
+Examples
+Input	
+3
+7
+123
+42
+0 2
+Output
+java.lang.Integer: 42
+java.lang.Integer: 123
+java.lang.Integer: 7

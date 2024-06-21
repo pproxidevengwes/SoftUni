@@ -1,0 +1,19 @@
+3.	Diagonal Difference
+Write a program that finds the difference between the sums of the square matrix diagonals (absolute value).
+ 
+Input
+•	The first line holds a number n – the size of matrix.
+•	The next n lines hold the values for every row – n numbers separated by a space.
+
+
+Examples
+Input		
+3
+11 2 4
+4 5 6
+10 8 -12	
+Output  15	
+Comments
+Primary diagonal: sum = 11 + 5 + (-12) = 4
+Secondary diagonal: sum = 4 + 5 + 10 = 19
+Difference: |4 - 19| = 15

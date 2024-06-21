@@ -1,0 +1,5 @@
+9.	List of Predicates
+Find all numbers in the range 1..N that are divisible by the numbers of a given sequence. Use predicates.
+Examples
+Input	10
+Output 1 1 1 2	2 4 6 8 10

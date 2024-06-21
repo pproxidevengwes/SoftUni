@@ -1,0 +1,39 @@
+Your Task
+Write a class Movie, which implements the following functionality:
+
+Functionality
+
+constructor ( movieName, ticketPrice )
+Receives 2 parameters at initialization of the class - movieName and ticketPrice.  
+Should have these 3 properties:
+·	movieName – property of type string;
+·	ticketPrice – property of type number, may come as a string;
+·	screenings– initially an empty array;
+Hint: Here you can add more properties to help you finish the task.  
+
+newScreening(date, hall, description)
+The date, hall and description are of type string. 
+•	Check if there is already entered screening with the same date and hall and throw an Error:
+`Sorry, {hall} hall is not available on {date}`
+•	Otherwise this function should add the screening to the screenings array and return:
+`New screening of {movieName} is added.`
+
+endScreening(date, hall, soldTickets) 
+·	Check if the screening array has a screening with the given date and hall, if NOT throw an Error:
+`Sorry, there is no such screening for {movieName} movie.`
+•	Otherwise  calculate the current screening profit of sold tickets, add the profit to the total profit for the movie, also add the sold tickets count to the total sold movie tickets, delete the screening from the screenings array and return:
+`{movieName} movie screening on {date} in {hall} hall has ended. Screening profit: {currentProfit}`
+
+toString()
+In the end is the toString() method where we return the full information of the movie.
+·	At the first line:
+`{movieName} full information:` 
+•	On the second two lines comes the collected profit, fixed to 0 and count of all sold tickets: 
+`Total profit: {profit}$
+Sold Tickets: {soldTickets}`
+•	If there are screenings into the screening array, add on new line:
+"Remaining film screenings:"
+ Sort screenings alphabetically by hall name and add a message for each of them on new line:
+`{hall} - {date} - {desrtiption}`
+•	If there are no screenings into screenings array add this line to the returned message:
+"No more screenings!"
