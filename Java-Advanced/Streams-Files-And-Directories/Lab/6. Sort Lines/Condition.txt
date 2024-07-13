@@ -1,0 +1,14 @@
+6.	Sort Lines
+Read the file provided, named "input.txt" and sort all lines. Write text to another text file. Use Path and Files Classes.
+Submit in Judge only the output of the program.
+Examples
+Input	
+C
+A
+B
+D	
+Output
+A
+B
+C
+D

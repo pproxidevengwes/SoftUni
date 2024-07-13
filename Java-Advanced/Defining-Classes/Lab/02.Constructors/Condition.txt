@@ -1,0 +1,16 @@
+2.	Car Constructors
+Make proper constructors for the Car class so you can create car objects with different type of input information.
+If you miss information about field of type String set the value to "unknown", and for integer field set -1.
+First declare constructor which takes only the car brand as parameter:
+Also create constructor which sets all the fields.
+Read information about car the same way as the previous task, however this time use constructors to create the objects, not creating object with the default constructor. You should be able to handle different types of input, the format will be the same as the previous task, but this time some of the data may be missing. For an example you can get only the car brand – which means you have to set the car model to "unknown" and the Horsepower value to -1. There will be lines with complete car data, declare constructor which sets all the fields. 
+You have to add the car objects to a collection of your choice and print the data as in the previous task. The input will always have one or three elements on each line.
+
+Examples
+Input	
+2
+Chevrolet
+Golf Polo 49
+Output
+The car is: Chevrolet unknown - -1 HP.
+The car is: Golf Polo - 49 HP.
